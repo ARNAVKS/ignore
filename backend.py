@@ -31,7 +31,10 @@ class FoodVerdict(BaseModel):
     is_valid: bool = Field(
         description="False if the input is not an edible food item (e.g. a random object, place, or gibberish). True otherwise."
     )
-    is_healthy: bool = Field(description="True if the food is healthy, False otherwise")
+    is_healthy: Optional[bool] = Field(
+        default=None,
+        description="True if the food is healthy, False otherwise. Null if is_valid is False."
+    )
     reasoning: str = Field(description="Short explanation of why it is healthy/unhealthy")
     recommendation: Optional[str] = Field(
         default=None,
